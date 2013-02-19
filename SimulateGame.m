@@ -6,7 +6,6 @@ flag=0; %flag to detect if the game ended
 t=1;
 
 while t <= 40 %up to 60 plays per player
-    fprintf('round %d', t);
     t % output the round number
     S % output the board information
     if (flag == 1)

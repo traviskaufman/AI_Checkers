@@ -1,4 +1,4 @@
-function [value] = MaxValue(S, in_alpha, in_beta, RW, flag, depth)
+function [value] = MaxValue(S, RW, flag, depth, alpha, beta)
 
 %this is implmented following the algorithm
 
@@ -12,11 +12,11 @@ if TerminalTest(S, RW, flag, depth, Jump)
 else
     value = -inf;
     for i = 1:length(list_of_S(1,1,:))
-        value = max(value, MinValue(list_of_S(:,:,i), in_alpha, in_beta, mod(RW+1, 2), flag, depth+1));
-        if value >= in_beta
-            break; % return value
+        value = max(value, MinValue(list_of_S(:,:,i), mod(RW+1, 2), flag, depth+1, alpha, beta));
+        if value >= beta
+            break;
         end
-        in_alpha = max(in_alpha, value);
+        alpha = max(alpha, value);
     end
 end
 
