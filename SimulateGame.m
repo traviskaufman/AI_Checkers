@@ -4,8 +4,9 @@ function [S]=SimulateGame
 S = InitializeGame;
 flag=0; %flag to detect if the game ended
 t=1;
+numberOfPlays = 40;
 
-while t <= 40 %up to 60 plays per player
+while t <= numberOfPlays %up to 60 plays per player
     t % output the round number
     S % output the board information
     if (flag == 1)
@@ -24,7 +25,7 @@ while t <= 40 %up to 60 plays per player
 end
 
     % if no playe lose after 40 round, then they should agree to draw
-    if (t == 41) 
+    if (t == numberOfPlays + 1) 
         disp('Agree to draws');
         S %output the final board information
     end
