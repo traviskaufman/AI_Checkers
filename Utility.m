@@ -8,17 +8,36 @@ if (RW == 0)
         for b=1:8
             if (mod(a+b,2)~=0)
                 weight = 0;
-                % simply count the total number of the pieces (subtract from  adversary)
-                if ( S(b,a)==1+RW || S(b,a)==3+RW) %RW piece
+                % Count pieces on board and assign weight values
+                if ( S(b,a)==1+RW || S(b,a)==3+RW) %friendly pawn piece
                     weight = 1;
                     
-                elseif ( S(b,a)==2+RW ) %RW piece
+                elseif (S(b,a) == 3)%friendly king piece
+                    weight = 2;
+                    
+                elseif ( S(b,a)==2+RW ) %enemy pawn piece
                     weight = -1;
                 
-                elseif ( S(b,a)==4 ) %RW piece
+                elseif ( S(b,a)==4 ) %enemy king piece
                     weight = -2;
                 end
-                value = value + weight;
+
+                %add utility for protected pieces
+                     %pieces on the side
+                     if ( (a ==1 || a==8 || b==1 || b==8) && (S(b,a) == 1 || S(b,a) == 3) )
+                         weight = 0.4 + weight;
+                     end  
+                     %pieces with a piece diagonally behind it
+                     
+                %subtract utility for enemy protected pieces
+                    %enemy pieces on the side
+                     if ( (a ==1 || a==8 || b==1 || b==8) && (S(b,a) == 1 || S(b,a) == 3) )
+                         weight = weight - 0.4;
+                     end
+                    %enemy pieces with a piece diagonaly behind it
+                    
+                 value = value + weight;
+                
             end 
         end  
     end 
