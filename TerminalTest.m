@@ -1,12 +1,12 @@
-function [result] = TerminalTest(S, RW, flag, depth, Jump)
-
+function [result] = TerminalTest(S, RW, flag, depth, Jump, round)
 %function to find whether the search should stop.
 
 result = 0;
-%[list_of_S,list_of_moves, flag] = Successors(S, RW, flag);
+
+maxDepth = max(log2(round), 3);
 
 %if depth of search reach a max value, then stop
-if (depth > 4 && Jump ~= 1) % maximum depth
+if (depth > maxDepth && Jump ~= 1) % maximum depth
     result = 1;
 end
 

@@ -1,10 +1,10 @@
-function [S, flag] = Expand(S, RW, flag)
+function [S, flag] = Expand(S, RW, flag, round)
 
 % do a Min-Max-Desicion Search, return the State and best move
-[S, move, flag] = MinMaxDecision(S, RW, flag);
+[S, move, flag] = MinMaxDecision(S, RW, flag, round);
 
 move % output the move given by each player
-
+ 
 if (flag == 1)
     if(RW == 0)
         disp('Red lose the game');

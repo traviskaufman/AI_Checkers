@@ -13,12 +13,12 @@ while t <= numberOfPlays %up to 60 plays per player
         disp('game end');
         t = inf;
     else
-        [S, flag] = Expand(S,0,flag);
+        [S, flag] = Expand(S,0,flag, t);
         if (flag == 1)
             disp('game end');
             t = inf;
         else
-            [S, flag] = Expand(S,1,flag);
+            [S, flag] = Expand(S,1,flag, t);
         end
     end
     t=t+1;

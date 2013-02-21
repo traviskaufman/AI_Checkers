@@ -1,4 +1,4 @@
-function [S, move, flag] = MinMaxDecision(S, RW, flag)
+function [S, move, flag] = MinMaxDecision(S, RW, flag, round)
 
 %first find all the successors of the current state
 [list_of_S, list_of_moves, flag, Jump] = Successors(S, RW, flag);
@@ -15,14 +15,14 @@ alpha = -inf;
 beta = inf;
 
 %find the max utility value for current state
-[value, alpha, beta] = MaxValue(S, RW, flag, 0, alpha, beta); % depth zero
+[value, alpha, beta] = MaxValue(S, RW, flag, 0, alpha, beta, round); % depth zero
 
 %search one step further to find which successor can provide the above max
 %utility value, and return this step(move/action)
 %this may be less efficient because lots of redundent exists
 %here. it may affect the constant factor in the time complexity
 for i = 1:length(list_of_S(1,1,:))
-    [temp, ~, ~] = MinValue(list_of_S(:,:,i), mod(RW+1,2), flag, 1, alpha, beta);
+    [temp, ~, ~] = MinValue(list_of_S(:,:,i), mod(RW+1,2), flag, 1, alpha, beta, round);
     if(value == temp)
         S = list_of_S(:,:,i);
         move = list_of_moves(:,i);
