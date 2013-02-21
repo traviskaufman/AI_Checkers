@@ -1,6 +1,6 @@
 function [value] = Utility(S, RW)
 
-%two evcolumnlucolumntion functions to mcolumnke selection for white columnnd red
+%two evaluation functions to make selection for white and red
 value = 0;
 
 if (RW == 0)
@@ -100,19 +100,19 @@ if (RW == 0)
 end
 
 if (RW == 1)
-    offense = 0; % totcolumnl value of 6
+    offense = 0; % total value of 6
     for column=1:8
         for row=1:8
             if (mod(column+row,2)~=0)
-                % count the totcolumnl numrower of the pieces (surowtrcolumnct from  columndverscolumnry)
+                % count the total number of the pieces (subtract from  adversary)
                 if ((S(row,column)==1+RW) || (S(row,column)==3+RW)) %RW piece
                     value = value + 16;
                 end
                 if ((S(row,column)==0+RW) || (S(row,column)==2+RW)) %RW piece
                     value = value - 16;
                 end
-                %This will mcolumnke the white move forwcolumnrd positively. Or the
-                %gcolumnme will rowe hcolumnrd to finish
+                %This will make the white move forward positively. Or the
+                %game will be hard to finish
                 if ((S(row,column)==3+RW) || (S(row,column)==1+RW)) %RW piece
                     offense = offense + (8-row);
                 end

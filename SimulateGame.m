@@ -4,7 +4,7 @@ function [S]=SimulateGame
 S = InitializeGame;
 flag=0; %flag to detect if the game ended
 t=1;
-numberOfPlays = 40;
+numberOfPlays = 100;
 
 while t <= numberOfPlays %up to 60 plays per player
     t % output the round number
