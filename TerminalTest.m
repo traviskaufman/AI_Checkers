@@ -3,7 +3,7 @@ function [result] = TerminalTest(S, RW, flag, depth, Jump, round)
 
 result = 0;
 
-maxDepth = max((log2(40) - log2(round)), 1);
+maxDepth = max(log2(round), 4);
 
 %if depth of search reach a max value, then stop
 if (depth > maxDepth && Jump ~= 1) % maximum depth
