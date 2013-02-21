@@ -1,4 +1,4 @@
-function [value] = MinValue(S, RW, flag, depth, alpha, beta)
+function [value, alpha, beta] = MinValue(S, RW, flag, depth, alpha, beta)
 
 %similat to MaxValue.m
 
@@ -9,7 +9,9 @@ if TerminalTest(S, RW, flag, depth, Jump)
 else
     value = inf;
     for i = 1:length(list_of_S(1,1,:))
-        value = min(value, MaxValue(list_of_S(:,:,i), mod(RW+1,2), flag, depth + 1, alpha, beta));
+        oldValue = value;
+        [value, alpha, beta] = MaxValue(list_of_S(:,:,i), mod(RW+1,2), flag, depth + 1, alpha, beta);
+        value = min(value, oldValue);
         if value <= alpha
             break;
         end
